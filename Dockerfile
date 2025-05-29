@@ -2,12 +2,11 @@ FROM node
 
 WORKDIR /app
 
-COPY ./package.json .
-COPY ./package-lock.json .
+COPY ./ ./
 
 RUN npm i -y
 
-COPY . .
+RUN ls -la
 
 RUN npm run build
 
