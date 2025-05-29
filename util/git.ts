@@ -12,7 +12,7 @@ export async function getCommits() {
   const commits = logs.all.map((commit) => ({
     hash: commit.hash,
     message: commit.message,
-    current: commit.hash == currentCommitHash,
+    current: commit.hash == currentCommitHash ? 'true' : 'false',
   }));
 
   return commits;
