@@ -1,0 +1,17 @@
+service: gerenciamento-usuarios
+
+image: sabasi/gerenciamento-usuarios
+
+ssh:
+  user: samuel.baron
+
+servers:
+  - 192.168.20.117
+
+registry:
+  username: sabasi
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
