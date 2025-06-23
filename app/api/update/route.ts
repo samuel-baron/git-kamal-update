@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 
   await gotoHash(hash);
 
-  exec("kamal deploy", (error, stdout, stderr) => {
+  exec("kamal deploy", (_error, stdout, stderr) => {
     console.log("stdout:", stdout);
     console.error("stderr:", stderr);
   });

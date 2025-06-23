@@ -8,6 +8,9 @@ ssh:
 servers:
   - 192.168.20.117
 
+proxy:
+  app_port: 3000
+
 registry:
   username: sabasi
   password:
