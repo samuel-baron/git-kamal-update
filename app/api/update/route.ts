@@ -1,7 +1,6 @@
-import sg from "simple-git";
 import { NextRequest, NextResponse } from "next/server";
 import { exec } from "child_process";
-import { promisify } from "util";
+import { gotoHash } from "@/util/git";
 
 export async function GET(request: NextRequest) {
   const hash = request.nextUrl.searchParams.get("hash");
@@ -13,11 +12,12 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const git = sg(`.git`);
-  await git.pull("origin", "main");
-  await git.checkout(hash);
+  await gotoHash(hash);
 
-  await promisify(exec)("kamal deploy");
+  exec("kamal deploy", (error, stdout, stderr) => {
+    console.log("stdout:", stdout);
+    console.error("stderr:", stderr);
+  });
 
   return NextResponse.json({ message: "Updating..." });
 }

@@ -54,21 +54,23 @@ export default function Home() {
                   {value}
                 </td>
               ))}
-              <button
-                onClick={() => {
-                  fetch(`/api/update?hash=${commit.hash}`)
-                    .then((res) => res.json())
-                    .then((json) => {
-                      if (json.error) {
-                        alert(json.error);
-                      } else {
-                      }
-                    });
-                }}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-              >
-                Update
-              </button>
+              <td>
+                <button
+                  onClick={() => {
+                    fetch(`/api/update?hash=${commit.hash}`)
+                      .then((res) => res.json())
+                      .then((json) => {
+                        if (json.error) {
+                          alert(json.error);
+                        } else {
+                        }
+                      });
+                  }}
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                >
+                  Update
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

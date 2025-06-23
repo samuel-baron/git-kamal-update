@@ -12,8 +12,14 @@ export async function getCommits() {
   const commits = logs.all.map((commit) => ({
     hash: commit.hash,
     message: commit.message,
-    current: commit.hash == currentCommitHash ? 'true' : 'false',
+    current: commit.hash == currentCommitHash ? "true" : "false",
   }));
 
   return commits;
+}
+
+export async function gotoHash(hash: string) {
+  const git = sg(`.git`);
+  await git.pull("origin", "main");
+  await git.checkout(hash);
 }
