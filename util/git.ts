@@ -1,7 +1,7 @@
 import sg from "simple-git";
 
 export async function getCommits() {
-  const git = sg(`/app/.git`);
+  const git = sg(`.git`);
   const branch = await git.branch();
 
   await git.fetch();
