@@ -1,7 +1,7 @@
 import sg from "simple-git";
 
 export async function getCommits() {
-  const git = sg(`.git`);
+  const git = sg(`/app/.git`);
   const branch = await git.branch();
 
   await git.fetch();
@@ -19,7 +19,7 @@ export async function getCommits() {
 }
 
 export async function gotoHash(hash: string) {
-  const git = sg(`.git`);
+  const git = sg(`/app/.git`);
   await git.pull("origin", "main");
   await git.checkout(hash);
 }
