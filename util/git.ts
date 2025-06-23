@@ -1,7 +1,20 @@
 import sg from "simple-git";
 
+async function setupGit() {
+  const git = sg();
+  await git.addConfig(
+    "safe.directory",
+    `*`,
+    false,
+    "global"
+  );
+}
+
 export async function getCommits() {
-  const git = sg(`/app/.git`);
+  await setupGit();
+
+  const git = sg();
+
   const branch = await git.branch();
 
   await git.fetch();
@@ -19,7 +32,9 @@ export async function getCommits() {
 }
 
 export async function gotoHash(hash: string) {
-  const git = sg(`/app/.git`);
+  await setupGit();
+
+  const git = sg();
   await git.pull("origin", "main");
   await git.checkout(hash);
 }
